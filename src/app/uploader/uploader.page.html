@@ -1,0 +1,57 @@
+<ion-header>
+    <ion-toolbar class="new-background-color">
+        <ion-title>Upload</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-card>
+        <ion-list>
+            <ion-item>
+                <ion-label>Board</ion-label>
+                <ion-select [(ngModel)]="board" placeholder="Choose">
+                    <ion-select-option value="ICSE">ICSE</ion-select-option>
+                    <ion-select-option value="CBSE">CBSE</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label>Subject</ion-label>
+                <ion-select [(ngModel)]="subject" placeholder="Choose">
+                    <ion-select-option value="Physics">Physics</ion-select-option>
+                    <ion-select-option value="Chemistry">Chemistry</ion-select-option>
+                    <ion-select-option value="Biology">Biology</ion-select-option>
+                    <ion-select-option value="Maths">Maths</ion-select-option>
+                    <ion-select-option value="English">English</ion-select-option>
+                    <ion-select-option value="Hindi">Hindi</ion-select-option>
+                    <ion-select-option value="Geography">Geography</ion-select-option>
+                    <ion-select-option value="History">History</ion-select-option>
+
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label>Class</ion-label>
+                <ion-select placeholder="Choose your Class" [(ngModel)]="classs">
+                    <ion-select-option value="{{index}}" *ngFor="let index of std"> {{index}} </ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Description</ion-label>
+                <ion-input type="text" [(ngModel)]="desc"></ion-input>
+            </ion-item>
+        </ion-list>
+
+
+        <ion-button (click)="choosefile()" fill="outline">Upload a file</ion-button>
+    </ion-card>
+    <div *ngIf="busy">
+        <app-apploading></app-apploading>
+    </div>
+    <div class=" progress ">
+        <div class="progress-bar progress-bar-striped bg-sucess " role="progressbar " [style.width]="(uploadProgress | async) + '%' " [attr.aria-valuenow]="(uploadProgress | async) " aria-valuemin="0 " aria-valuemax="100 ">
+        </div>
+    </div>
+    <div *ngIf="downloadURL " class="alert alert-info " role="alert ">
+        File uploaded: <a [href]="downloadURL ">{{downloadURL}}</a>
+    </div>
+
+</ion-content>

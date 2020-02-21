@@ -1,0 +1,56 @@
+<ion-header>
+    <ion-toolbar class="new-background-color">
+        <ion-title>Register</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+        <ion-item>
+            <ion-label position="floating">Name</ion-label>
+            <ion-input required type="text" [(ngModel)]="name"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Usertype</ion-label>
+            <ion-select [(ngModel)]="type">
+                <ion-select-option value="S">Student</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label>Teacher</ion-label>
+            <ion-select placeholder="Choose" [(ngModel)]="SelectedTeacher">
+                <ion-select-option value="{{teacher.code}}/{{teacher.name}}" *ngFor="let teacher of teacher|async"> {{teacher.name}} </ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Teacher Code</ion-label>
+            <ion-input required type="text" [(ngModel)]="code"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Email</ion-label>
+            <ion-input required type="email" [(ngModel)]="email"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Password</ion-label>
+            <ion-input type="password" [(ngModel)]="password"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Confirm Password</ion-label>
+            <ion-input type="password" [(ngModel)]="cpassword"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Board</ion-label>
+            <ion-select [(ngModel)]="board" placeholder="Choose">
+                <ion-select-option value="ICSE">ICSE</ion-select-option>
+                <ion-select-option value="CBSE">CBSE</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label>Class</ion-label>
+            <ion-select placeholder="Choose your Class" [(ngModel)]="class">
+                <ion-select-option value="{{index}}" *ngFor="let index of std"> {{index}} </ion-select-option>
+            </ion-select>
+        </ion-item>
+    </ion-list>
+    <ion-button expand="block" fill="solid" (click)="register()">SIGNUP</ion-button>
+</ion-content>

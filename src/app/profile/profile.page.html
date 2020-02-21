@@ -1,0 +1,82 @@
+<ion-header>
+    <ion-toolbar class="new-background-color">
+        <ion-title>My Profile</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div id="profile-info">
+        <ion-grid>
+            <ion-row>
+                <p>
+                    Name:
+                </p>
+
+                <p>
+                    {{userName}}
+                </p>
+            </ion-row>
+            <ion-row>
+                <p>
+                    Email:
+                </p>
+
+                <p>
+                    {{Email}}
+                </p>
+            </ion-row>
+            <ion-row>
+                <p>
+                    You Are:
+                </p>
+                <p>
+                    {{type}}
+                </p>
+            </ion-row>
+            <div *ngIf="type==='Student'">
+                <ion-row>
+                    <p>
+                        Teacher:
+                    </p>
+                    <p>
+                        {{teacher}}
+                    </p>
+                </ion-row>
+                <ion-row>
+                    <p>
+                        Board:
+                    </p>
+                    <p>
+                        {{board}}
+                    </p>
+                </ion-row>
+                <ion-row>
+                    <p>
+                        Class:
+                    </p>
+                    <p>
+                        {{classs}}
+                    </p>
+                </ion-row>
+                <ion-row>
+                    <div>
+                        Subjects:
+                    </div>
+                    <div *ngFor="let subject of subjects">
+                        {{subject}},
+                    </div>
+
+                </ion-row>
+            </div>
+            <ion-row>
+
+                <ion-button shape="round" routerLink="/tabs/edit-profile">Edit Profile</ion-button>
+                <ion-button shape="round" (click)="SignOut()">Logout</ion-button>
+                <div *ngIf="type==='Teacher'">
+                    <ion-button shape="round" (click)="showStudents()">Show my students</ion-button>
+                </div>
+            </ion-row>
+        </ion-grid>
+    </div>
+
+</ion-content>

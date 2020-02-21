@@ -1,0 +1,28 @@
+<ion-tabs #tabs>
+    <ion-tab-bar slot="bottom">
+        <ion-tab-button tab="material">
+            <ion-icon name="book">
+                <ion-label>
+                    Material
+                </ion-label>
+            </ion-icon>
+        </ion-tab-button>
+
+        <ion-tab-button tab="uploader" *ngIf="type==='T'">
+            <ion-icon name="add-circle-outline">
+                <ion-label>
+                    Upload
+                </ion-label>
+            </ion-icon>
+        </ion-tab-button>
+
+        <ion-tab-button tab="profile">
+            <ion-icon name="person">
+                <ion-label>
+                    Profile
+                </ion-label>
+            </ion-icon>
+        </ion-tab-button>
+    </ion-tab-bar>
+</ion-tabs>
+<script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>

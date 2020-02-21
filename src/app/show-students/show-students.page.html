@@ -1,0 +1,27 @@
+<ion-header>
+    <ion-toolbar class="new-background-color">
+        <ion-title>MyStudents</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+    <ion-card>
+        <div *ngFor="let key of students">
+            <ion-card color="dark">
+
+                <ion-card-header>{{key.name}}
+                    <ion-button fill="outline" size="small" class="ion-float-right" (click)="EditDetails(key)">Edit</ion-button>
+                </ion-card-header>
+                <ion-card-content>
+                    <p>
+                        Email:{{key.email}}
+                    </p>
+                    <p>
+                        Subjects:{{key.Subjects}}
+                    </p>
+                </ion-card-content>
+            </ion-card>
+        </div>
+    </ion-card>
+</ion-content>

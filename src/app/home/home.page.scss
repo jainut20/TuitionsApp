@@ -1,0 +1,9 @@
+.new-background-color {
+    --background: linear-gradient(197deg, rgb(255, 255, 255) 0%, rgb(200, 110, 0) 13.5%, rgb(225, 125, 0) 33.33%, rgb(255, 165, 0) 100%) !important;
+}
+
+app-apploading {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+}

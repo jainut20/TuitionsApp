@@ -1,0 +1,49 @@
+<ion-header>
+    <ion-toolbar class="new-background-color">
+
+        <ion-title>Login</ion-title>
+
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+
+    <ion-list>
+        <ion-item>
+            <ion-label position="floating">Email</ion-label>
+            <ion-input type="text" [(ngModel)]="email"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Password</ion-label>
+            <ion-input type="password" [(ngModel)]="password"></ion-input>
+        </ion-item>
+    </ion-list>
+
+
+    <ion-radio-group [(ngModel)]="type">
+        <ion-list-header>
+            <ion-label>You are:</ion-label>
+        </ion-list-header>
+
+        <ion-item>
+            <ion-label>Student</ion-label>
+            <ion-radio slot="start" value="S" checked></ion-radio>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>Teacher</ion-label>
+            <ion-radio slot="start" value="T"></ion-radio>
+        </ion-item>
+    </ion-radio-group>
+
+
+    <ion-button expand="block" shape="round" fill="solid" (click)="login()">Login</ion-button>
+    <app-apploading *ngIf="busy"></app-apploading>
+    <ion-card *ngIf="!busy">
+        Not Registered Yet?
+        <ion-button expand="block" shape="round" fill="solid" (click)="RegisterAsTeacher()">Register As Teacher</ion-button>
+        <ion-button expand="block" shape="round" fill="solid" (click)="RegisterAsStudent()">Register As Student</ion-button>
+    </ion-card>
+
+</ion-content>

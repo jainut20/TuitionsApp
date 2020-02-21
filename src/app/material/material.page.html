@@ -1,0 +1,72 @@
+<ion-header>
+    <ion-toolbar class="new-background-color">
+        <ion-title>Material</ion-title>
+    </ion-toolbar>
+</ion-header>
+<div *ngIf="type=='T'">
+    <ion-item>
+        <ion-label>Class</ion-label>
+        <ion-select placeholder="Choose" [(ngModel)]="classs" (ionChange)="viewforteacher()">
+            <ion-select-option value="{{index}}" *ngFor="let index of std"> {{index}} </ion-select-option>
+        </ion-select>
+        <ion-label>Subject</ion-label>
+        <ion-select [(ngModel)]="subject" placeholder="Choose" (ionChange)="viewforteacher()">
+            <ion-select-option value="ALL">ALL</ion-select-option>
+            <ion-select-option value="Physics">Physics</ion-select-option>
+            <ion-select-option value="Chemistry">Chemistry</ion-select-option>
+            <ion-select-option value="Biology">Biology</ion-select-option>
+            <ion-select-option value="Maths">Maths</ion-select-option>
+            <ion-select-option value="English">English</ion-select-option>
+            <ion-select-option value="Hindi">Hindi</ion-select-option>
+            <ion-select-option value="Geography">Geography</ion-select-option>
+            <ion-select-option value="History">History</ion-select-option>
+        </ion-select>
+    </ion-item>
+</div>
+<div *ngIf="type=='S'">
+    <ion-item>
+        <ion-label>Subject</ion-label>
+        <ion-select [(ngModel)]="subject" placeholder="Choose" (ionChange)="ngOnInit()">
+            <ion-select-option value="ALL">ALL</ion-select-option>
+            <ion-select-option value="Physics">Physics</ion-select-option>
+            <ion-select-option value="Chemistry">Chemistry</ion-select-option>
+            <ion-select-option value="Biology">Biology</ion-select-option>
+            <ion-select-option value="Maths">Maths</ion-select-option>
+            <ion-select-option value="English">English</ion-select-option>
+            <ion-select-option value="Hindi">Hindi</ion-select-option>
+            <ion-select-option value="Geography">Geography</ion-select-option>
+            <ion-select-option value="History">History</ion-select-option>
+        </ion-select>
+    </ion-item>
+</div>
+
+<ion-content>
+    <div *ngIf="busy">
+        <app-apploading></app-apploading>
+    </div>
+    <div *ngFor="let key of material">
+        <ion-card color="dark" (click)="ViewPDF(key.link)">
+
+            <ion-button *ngIf="type=='T'" fill="outline" [ngStyle]="{'margin-left':'73%' , 'margin-bottom':'0'}" size="small" (click)="DeleteFile(key)">Delete</ion-button>
+
+            <a href={{key.link}}>
+                <ion-card-header>{{key.name}}
+                </ion-card-header>
+                <ion-card-content>
+                    <p>
+                        Subject:{{key.subject}}
+                    </p>
+                    <p>
+                        UploadedBy:{{key.author}}
+                    </p>
+                    <p>
+                        board:{{key.board}}
+                    </p>
+                    <p>
+                        Description:{{key.desc}}
+                    </p>
+                </ion-card-content>
+            </a>
+        </ion-card>
+    </div>
+</ion-content>

@@ -1,0 +1,32 @@
+<ion-header>
+    <ion-toolbar class="new-background-color">
+        <ion-title>StudentDetails</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="profile-info">
+        <ion-item>
+            <ion-label position="floating">Username</ion-label>
+            <ion-input disabled [(ngModel)]="name"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Email</ion-label>
+            <ion-input disabled [(ngModel)]="email"></ion-input>
+        </ion-item>
+
+        <ion-list>
+            <ion-item>
+                <ion-label>ALL</ion-label>
+                <ion-checkbox slot="start" [(ngModel)]="masterCheck" [indeterminate]="isIndeterminate" (click)="checkMaster($event)"></ion-checkbox>
+            </ion-item>
+            <ion-item *ngFor="let entry of subjects">
+                <ion-label> {{entry.val}} </ion-label>
+                <ion-checkbox slot="start" [(ngModel)]="entry.isChecked" (ionChange)="checkEvent()"> </ion-checkbox>
+            </ion-item>
+
+        </ion-list>
+    </div>
+
+    <ion-button (click)="SaveProfile()">Save</ion-button>
+</ion-content>

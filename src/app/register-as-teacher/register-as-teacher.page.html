@@ -1,0 +1,37 @@
+<ion-header>
+    <ion-toolbar class="new-background-color">
+        <ion-title>Register</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+        <ion-item>
+            <ion-label position="floating">Name</ion-label>
+            <ion-input type="text" [(ngModel)]="name"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Usertype</ion-label>
+            <ion-select [(ngModel)]="type">
+                <ion-select-option value="T">Teacher</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Email</ion-label>
+            <ion-input type="email" name="email" [(ngModel)]="email"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Password</ion-label>
+            <ion-input type="password" [(ngModel)]="password"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Confirm Password</ion-label>
+            <ion-input type="password" [(ngModel)]="cpassword"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Set your code</ion-label>
+            <ion-input type="text" name="code" [(ngModel)]="code"></ion-input>
+        </ion-item>
+    </ion-list>
+    <ion-button expand="block" fill="solid" (click)="register()">SIGNUP</ion-button>
+</ion-content>
