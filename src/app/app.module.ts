@@ -19,8 +19,11 @@ import { File } from '@ionic-native/file/ngx';
 import { FileChooser } from '@ionic-native/file-chooser/ngx';
 import { FilePath } from '@ionic-native/file-path/ngx';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
+import { FileOpener } from '@ionic-native/file-opener/ngx';
+
 
 import { SharedModule } from './share.module';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -32,6 +35,7 @@ import { SharedModule } from './share.module';
     FileChooser,
     FilePath,
     FileTransfer,
+    FileOpener,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     userService,
     

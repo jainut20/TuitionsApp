@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { userService } from '../user.service';
-import { AlertController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
-
 @Component({
   selector: 'app-edit-profile',
   templateUrl: './edit-profile.page.html',
@@ -23,7 +22,7 @@ export class EditProfilePage implements OnInit {
   std=new Array(10)
   board
   classs
-  constructor(private afs:AngularFirestore,public user:userService,public alertController:AlertController,public router:Router, public afAuth:AngularFireAuth) { 
+  constructor(private afs:AngularFirestore,public user:userService,public alertController:AlertController,public router:Router, public afAuth:AngularFireAuth,private navctrl:NavController) { 
 
     for (let index = 0; index <10; index++) {
       this.std[index]=index+1;
@@ -105,8 +104,18 @@ export class EditProfilePage implements OnInit {
     this.newpassword = ""
     this.busy = false
     await this.presentAlert('Done!', 'Your profile was updated!')
-  
-
-    this.router.navigate(['/login'])
- }
+    if(this.type=="S"){
+      await this.afs.doc(`Students/${this.user.getUID()}`).update({
+        Loggedin:false
+      });
+    }
+    if(this.type=="T"){
+      await this.afs.doc(`Teachers/${this.user.getUID()}`).update({
+        Loggedin:false
+      });
+    }
+    this.afAuth.auth.signOut().then(()=>{
+      this.navctrl.navigateRoot('/login');
+ })
+}
 }

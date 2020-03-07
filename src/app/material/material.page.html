@@ -38,35 +38,32 @@
             <ion-select-option value="History">History</ion-select-option>
         </ion-select>
     </ion-item>
+    <ion-item *ngIf="busy">
+        <app-apploading *ngIf="busy" [ngStyle]="{'margin-left':'50%' , 'margin-bottom':'0'}"></app-apploading>
+    </ion-item>
 </div>
 
 <ion-content>
-    <div *ngIf="busy">
-        <app-apploading></app-apploading>
-    </div>
     <div *ngFor="let key of material">
-        <ion-card color="dark" (click)="ViewPDF(key.link)">
-
+        <ion-card color="dark">
             <ion-button *ngIf="type=='T'" fill="outline" [ngStyle]="{'margin-left':'73%' , 'margin-bottom':'0'}" size="small" (click)="DeleteFile(key)">Delete</ion-button>
-
-            <a href={{key.link}}>
-                <ion-card-header>{{key.name}}
-                </ion-card-header>
-                <ion-card-content>
-                    <p>
-                        Subject:{{key.subject}}
-                    </p>
-                    <p>
-                        UploadedBy:{{key.author}}
-                    </p>
-                    <p>
-                        board:{{key.board}}
-                    </p>
-                    <p>
-                        Description:{{key.desc}}
-                    </p>
-                </ion-card-content>
-            </a>
+            <ion-card-header>{{key.name}}
+            </ion-card-header>
+            <ion-card-content>
+                <p>
+                    Subject:{{key.subject}}
+                </p>
+                <p>
+                    UploadedBy:{{key.author}}
+                </p>
+                <p>
+                    board:{{key.board}}
+                </p>
+                <p>
+                    Description:{{key.desc}}
+                </p>
+            </ion-card-content>
+            <ion-button [ngStyle]="{'margin-left':'67%'}" fill="outline" size="small" (click)="ViewPDF(key)">View</ion-button>
         </ion-card>
     </div>
 </ion-content>
