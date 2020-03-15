@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild,NgZone } from '@angular/core';
 import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
 import { map, finalize } from 'rxjs/operators';
@@ -27,7 +27,7 @@ export class UploaderPage implements OnInit {
   subject
   busy: boolean = false
   desc
-  constructor(private afStorage: AngularFireStorage, public afstore: AngularFirestore, public user: userService, private file: File, private filechooser: FileChooser, private filepath: FilePath) {
+  constructor(private afStorage: AngularFireStorage, public afstore: AngularFirestore, private zone:NgZone,public user: userService, private file: File, private filechooser: FileChooser, private filepath: FilePath) {
     for (let index = 0; index < 5; index++) {
       this.std[index] = 6 + index;
     }
@@ -43,7 +43,6 @@ export class UploaderPage implements OnInit {
       this.busy = true;
       await this.filechooser.open().then(async uri => {
         await this.filepath.resolveNativePath(uri).then(resolvenativepath => {
-          alert(resolvenativepath)
           let dirPath = resolvenativepath
           let dirPathsegments = dirPath.split('/')
           let filename = dirPathsegments.pop()
@@ -68,7 +67,7 @@ export class UploaderPage implements OnInit {
     this.ref = this.afStorage.ref(filename + "_" + id + ".pdf")
     this.task = this.ref.put(blob)
     this.uploadState = this.task.snapshotChanges().pipe(map(s => s.state))
-    this.uploadProgress = this.task.percentageChanges();
+    this.zone.run(()=>{this.uploadProgress = this.task.percentageChanges();})
     this.task.snapshotChanges().pipe(
       finalize(() => {
         this.ref.getDownloadURL().subscribe(url => {

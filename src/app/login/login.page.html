@@ -38,7 +38,8 @@
     </ion-radio-group>
 
 
-    <ion-button expand="block" shape="round" fill="solid" (click)="login()">Login</ion-button>
+    <ion-button expand="block" shape="round" fill="solid" (click)="btnlogin()">Login</ion-button>
+
     <app-apploading *ngIf="busy"></app-apploading>
     <ion-card *ngIf="!busy">
         Not Registered Yet?

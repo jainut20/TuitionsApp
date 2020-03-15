@@ -91,7 +91,6 @@ export class MaterialPage implements OnInit {
       const transfer = this.transfer.create()
       transfer.download(link, path + key.name).then(entry => {
         let url = entry.toURL();
-        alert(url)
         this.fileopener.open(url, 'application/pdf')
         this.busy = false;
       })
